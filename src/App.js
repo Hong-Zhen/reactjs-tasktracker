@@ -1,7 +1,9 @@
+import Header from "./components/Header";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Tester again</h1>
+    <div className="container">
+      <Header title="Tasks" />
     </div>
   );
 }

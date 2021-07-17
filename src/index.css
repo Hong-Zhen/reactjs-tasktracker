@@ -33,4 +33,77 @@ body {
   background-color: black;
   padding: 10px 20px;
   border-radius: 5px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.task {
+  background-color: hsl(0, 0%, 93%);
+  padding: 8px;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
+.task h3 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task h3 cross-icon {
+  cursor: pointer;
+}
+
+/* OR .task.reminder */
+.reminder {
+  border-left: 5px solid green;
+}
+
+.btn-form {
+  display: block;
+  width: 100%;
+}
+
+.task-input input:focus,
+.date-input input:focus {
+  outline: none;
+  border: 1px solid black;
+  box-shadow: 1px 1px 2px lightblue;
+}
+
+.add-form {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  padding: 10px 0 10px 0;
+}
+
+.form-control label {
+  display: block;
+}
+
+.form-control input {
+  height: 30px;
+  width: 100%;
+}
+
+.form-control-check {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-control-check label {
+  flex: 1;
+}
+
+.form-control-check input {
+  flex: 2;
+  height: 20px;
 }

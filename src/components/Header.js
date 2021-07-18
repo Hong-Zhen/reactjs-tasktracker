@@ -2,15 +2,15 @@ import React from "react";
 import PropType from "prop-types";
 import Button from "./Button";
 
-export const Header = ({ title }) => {
-  const button_handler = () => {
-    console.log("clicked button 1");
-  };
-
+export const Header = ({ title, onAdd, showAdd }) => {
   return (
     <header className="header">
       <h1>{title}</h1>
-      <Button text="Add" onClick={button_handler} />
+      <Button
+        color={showAdd ? "red" : "black"}
+        text={showAdd ? "Close" : "Add"}
+        onClick={onAdd}
+      />
     </header>
   );
 };

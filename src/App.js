@@ -1,9 +1,10 @@
-// https://github.com/bradtraversy/react-crash-2021
-
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/Add";
+import Footer from "./components/Footer";
+import About from "./components/About";
 
 function App() {
   const [showAddForm, setShowAddForm] = useState(false);
@@ -86,19 +87,35 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <Header
-        title="Tasks: "
-        onAdd={() => setShowAddForm(!showAddForm)}
-        showAdd={showAddForm}
-      />
-      {showAddForm && <AddTask onAdd={addTask} />}
-      {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
-      ) : (
-        "No Tasks"
-      )}
-    </div>
+    <Router>
+      <div className="container">
+        <Header
+          title="Tasks: "
+          onAdd={() => setShowAddForm(!showAddForm)}
+          showAdd={showAddForm}
+        />
+        <Route
+          path="/"
+          exact
+          render={(props) => (
+            <>
+              {showAddForm && <AddTask onAdd={addTask} />}
+              {tasks.length > 0 ? (
+                <Tasks
+                  tasks={tasks}
+                  onDelete={deleteTask}
+                  onToggle={toggleReminder}
+                />
+              ) : (
+                "No Tasks"
+              )}
+            </>
+          )}
+        />
+        <Route path="/about" component={About} />
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

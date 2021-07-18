@@ -1,0 +1,18 @@
+npm start - to start dev build on local 3000
+npm run server - to start local database, go http://localhost:5000/posts on chrome to access it
+
+Ctrl + c to quit dev build and server
+
+Two different terminal/cmd have to be opened, one for server(5000) and the other for dev build (3000)
+Additional terminal/cmd for git 
+
+To setup server:
+npm i json-server
+go package.json -> "scripts"
+add -> "server": "json-server --watch db.json --port 5000
+then -> npm run server 
+db.json will be created
+
+
+For reference:
+https://github.com/bradtraversy/react-crash-2021

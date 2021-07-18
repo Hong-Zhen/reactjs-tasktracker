@@ -1,4 +1,3 @@
-import PropType from "prop-types";
 import Task from "./Task";
 
 const Tasks = ({ tasks, onDelete, onToggle }) => {

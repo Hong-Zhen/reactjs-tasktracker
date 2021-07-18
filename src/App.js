@@ -1,32 +1,24 @@
 // https://github.com/bradtraversy/react-crash-2021
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/Add";
 
 function App() {
   const [showAddForm, setShowAddForm] = useState(false);
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: "Medical Appointment",
-      day: "16 Jul at 3pm",
-      reminder: true,
-    },
-    {
-      id: 2,
-      text: "Book Next Medical Appointment",
-      day: "20 Dec at 8am",
-      reminder: true,
-    },
-    {
-      id: 3,
-      text: "Dental Appointment",
-      day: "16 Mar at 9am",
-      reminder: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const fromServer = await fetch("http://localhost:5000/posts");
+      const data = await fromServer.json();
+
+      console.log(data);
+    };
+
+    fetchTasks();
+  }, []);
 
   // Add Task
   const addTask = (task) => {

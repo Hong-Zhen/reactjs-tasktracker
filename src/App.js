@@ -22,7 +22,14 @@ function App() {
     const fromServer = await fetch("http://localhost:5000/posts");
     const data = await fromServer.json();
 
-    console.log(data);
+    return data;
+  };
+
+  // Fetch Single Data (Task)
+  const fetchTask = async (id) => {
+    const fromServer = await fetch(`http://localhost:5000/posts/${id}`);
+    const data = await fromServer.json();
+
     return data;
   };
 
@@ -56,11 +63,23 @@ function App() {
     console.log("Deleted", id);
   };
 
-  // Double click
-  const toggleReminder = (id) => {
+  // Toggle Reminder (Double click on Task)
+  const toggleReminder = async (id) => {
+    const taskToToggle = await fetchTask(id);
+    const updatedTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
+
+    const taskFromServer = await fetch(`http://localhost:5000/posts/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(updatedTask),
+    });
+
+    const data = await taskFromServer.json();
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, reminder: !task.reminder } : task
+        task.id === id ? { ...task, reminder: data.reminder } : task
       )
     );
     console.log("Toggle remainder, ", id);
